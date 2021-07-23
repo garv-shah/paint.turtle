@@ -112,7 +112,7 @@ def undo():
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("Turtle GUI")
+    root.title("paint.turtle")
     canvas = tk.Canvas(root)
     canvas.config(width=600, height=400)
     canvas.pack(side=tk.LEFT)
