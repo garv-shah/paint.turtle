@@ -1,5 +1,8 @@
 import turtle
 
+screen = turtle.Screen()
+
+
 def onmove(self, fun, add=None):
     """
     Bind fun to mouse-motion event on screen.
@@ -22,7 +25,9 @@ def onmove(self, fun, add=None):
     else:
         def eventfun(event):
             fun(self.cv.canvasx(event.x) / self.xscale, -self.cv.canvasy(event.y) / self.yscale)
+
         self.cv.bind('<Motion>', eventfun, add)
+
 
 def goto_handler(x, y):
     onmove(turtle.Screen(), None)  # avoid overlapping events
@@ -30,10 +35,25 @@ def goto_handler(x, y):
     turtle.goto(x, y)
     onmove(turtle.Screen(), goto_handler)
 
+
+def click_handler(x, y):
+    print('click')
+    turtle.penup()
+    turtle.goto(x, y)
+    turtle.pendown()
+    onmove(screen, goto_handler)
+
+
+def release_handler(x, y):
+    print('release')
+    onmove(screen, ())
+
+
 turtle.shape('turtle')
 turtle.speed(0)
 turtle.delay(0)
 
-onmove(turtle.Screen(), goto_handler)
+screen.onclick(click_handler)
+turtle.onrelease(release_handler)
 
 turtle.mainloop()
