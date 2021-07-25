@@ -44,16 +44,10 @@ def click_handler(x, y):
     onmove(screen, goto_handler)
 
 
-def release_handler(x, y):
-    print('release')
-    onmove(screen, ())
-
-
 turtle.shape('turtle')
 turtle.speed(0)
 turtle.delay(0)
 
 screen.onclick(click_handler)
-turtle.onrelease(release_handler)
 
 turtle.mainloop()
