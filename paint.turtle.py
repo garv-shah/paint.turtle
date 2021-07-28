@@ -66,6 +66,7 @@ def release_rect(x, y):
 
 
 def rectangle():
+    off()
     temporary.ondrag(drag_rect)
     screen.onclick(set_base_rect)
     temporary.onrelease(release_rect)
@@ -75,6 +76,8 @@ def off():
     temporary.ondrag(None)
     screen.onclick(None)
     temporary.onrelease(None)
+    onmove(screen, None)
+    permanent.onclick(None)
 
 
 def choose_color():
@@ -112,6 +115,7 @@ def undo():
 
 
 def pen_on():
+    off()
     global state
     state = MOVING
     onmove(screen, move_handler)
@@ -182,7 +186,7 @@ def onmove(self, fun, add=None):
 root = tk.Tk()
 root.title("paint.turtle")
 canvas = tk.Canvas(root)
-canvas.config(width=600, height=400)
+canvas.config(width=1100, height=700)
 canvas.pack(side=tk.LEFT)
 screen = turtle.TurtleScreen(canvas)
 screen.colormode(255)
